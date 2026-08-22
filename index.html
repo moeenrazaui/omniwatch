@@ -48,15 +48,33 @@
   section{padding:90px 0;}
   @media (max-width:768px){ section{padding:56px 0;} }
 
+  /* ---------- HEADER ---------- */
+  .site-header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,14,39,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .site-header .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .site-logo{
+    display:flex; align-items:center; gap:8px;
+    font-weight:800; font-size:18px; color:#fff; letter-spacing:-.01em;
+  }
+  .site-logo .dot{ width:9px; height:9px; border-radius:50%; background:var(--teal); display:inline-block; }
+  .site-header .btn{ padding:10px 22px; font-size:14px; }
+
   /* ---------- HERO (full bleed) ---------- */
   .hero{
     position:relative;
-    min-height:92vh;
+    height:700px;
     color:#fff;
     overflow:hidden;
   }
   .hero-bg{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 25%; z-index:0;
   }
   .hero-overlay{
     position:absolute; inset:0;
@@ -65,7 +83,7 @@
   }
   .hero-content{
     position:relative; z-index:2;
-    max-width:1240px; margin:0 auto; padding: 90px 24px 0;
+    max-width:1240px; margin:0 auto; padding: 70px 24px 0;
   }
   .hero-text{ max-width:560px; }
   .rating-badge{
@@ -89,21 +107,16 @@
     background: var(--teal); color:#04231a; font-size:12px; font-weight:800;
     display:flex; align-items:center; justify-content:center; margin-top:1px;
   }
-  .hero-cta-row{ display:flex; flex-direction:column; gap:12px; align-items:flex-start; margin-bottom:60px;}
+  .hero-cta-row{ display:flex; flex-direction:column; gap:12px; align-items:flex-start; margin-bottom:40px;}
   .guarantee-text{ font-size:13px; color:#c7cbe6; display:flex; align-items:center; gap:6px; }
   .as-seen{
-    position:relative; z-index:2;
-    padding: 26px 0 34px; text-align:center;
-    background:linear-gradient(0deg, rgba(6,8,22,.55) 0%, rgba(6,8,22,0) 100%);
+    position:absolute; left:0; right:0; bottom:0; z-index:2;
+    padding: 26px 0 30px; text-align:center;
+    background:linear-gradient(0deg, rgba(6,8,22,.75) 0%, rgba(6,8,22,0) 100%);
   }
   .as-seen p{ font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:#c7cbe6; margin-bottom:16px;}
   .logo-row{ display:flex; gap:40px; align-items:center; justify-content:center; flex-wrap:wrap; opacity:.9; }
-  .logo-row span{ font-weight:700; font-size:17px; color:#fff; letter-spacing:.02em; }
-  .chat-fab{
-    position:absolute; bottom:24px; right:24px; z-index:3; width:54px; height:54px; border-radius:50%;
-    background: var(--blue-accent); display:flex; align-items:center; justify-content:center; font-size:20px;
-    box-shadow:0 10px 24px rgba(0,0,0,.35);
-  }
+  .logo-row img{ height:22px; width:auto; filter:brightness(0) invert(1); opacity:.92; }
 
   /* ---------- FEATURES (white) ---------- */
   .section-head{ text-align:center; max-width:600px; margin:0 auto 52px; }
@@ -114,14 +127,11 @@
   .section-head.on-dark p{ color:#a9aed1; }
 
   .feature-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
-  .feature-card .img-wrap{ position:relative; margin-bottom:22px; }
-  .feature-card img{ border-radius:14px; height:230px; width:100%; object-fit:cover; }
-  .feature-badge{
-    position:absolute; top:14px; right:14px; background:rgba(15,20,45,.85); backdrop-filter:blur(6px);
-    border-radius:8px; padding:8px 12px; font-size:11.5px; color:#fff; max-width:160px; line-height:1.4;
+  .feature-card .img-wrap{
+    position:relative; margin-bottom:22px; border-radius:14px; overflow:hidden;
+    height:230px; background:var(--cream);
   }
-  .feature-badge .tag{ display:inline-block; background:rgba(239,68,68,.9); font-size:9px; font-weight:700; padding:2px 6px; border-radius:4px; margin-bottom:4px; text-transform:uppercase; }
-  .feature-badge.ok .tag{ background: var(--teal-dark); }
+  .feature-card img{ height:100%; width:100%; object-fit:contain; object-position:center; }
   .feature-card h3{ font-size:19px; font-weight:700; margin-bottom:14px; }
   .feature-card ul{ list-style:none; }
   .feature-card li{ display:flex; gap:10px; font-size:14px; color:var(--gray); margin-bottom:10px; }
@@ -133,22 +143,20 @@
   .testi-track{ display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px; margin:0 -24px; padding-left:24px; }
   .testi-track::-webkit-scrollbar{ display:none; }
   .testi-card{
-    scroll-snap-align:start; flex:0 0 320px; position:relative; border-radius:16px; overflow:hidden; height:400px;
+    scroll-snap-align:start; flex:0 0 260px; position:relative; border-radius:16px; overflow:hidden; height:340px;
+    background:var(--card-navy);
   }
-  .testi-card img{ width:100%; height:100%; object-fit:cover; }
-  .testi-card .grad{
-    position:absolute; left:0; right:0; bottom:0; padding:24px 20px;
-    background:linear-gradient(0deg, rgba(0,0,0,.85) 10%, rgba(0,0,0,.1) 80%);
-  }
-  .testi-card blockquote{ font-size:15.5px; color:#fff; margin-bottom:8px; font-weight:500; }
-  .testi-card footer{ font-size:13px; color:#d5d8ec; }
+  .testi-card img{ width:100%; height:100%; object-fit:cover; object-position:center top; }
   .dots{ display:flex; gap:8px; justify-content:center; margin:28px 0 0; }
   .dot{ width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.25); cursor:pointer; border:none; padding:0; }
   .dot.active{ background:#fff; width:20px; border-radius:4px; transition:.2s; }
 
   .riskfree-title{ text-align:center; font-size:clamp(22px,2.8vw,30px); font-weight:800; margin:80px 0 32px; }
   .riskfree-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-  .riskfree-card img{ border-radius:14px; height:280px; width:100%; object-fit:cover; margin-bottom:18px; }
+  .riskfree-card .img-wrap{
+    border-radius:14px; overflow:hidden; height:280px; margin-bottom:18px; background:var(--card-navy);
+  }
+  .riskfree-card img{ height:100%; width:100%; object-fit:contain; object-position:center; }
   .riskfree-card h3{ font-size:19px; font-weight:700; margin-bottom:8px; }
   .riskfree-card p{ color:#b7bce0; font-size:14.5px; }
 
@@ -197,12 +205,14 @@
   .plan-section li.no{ color:#6c729a; text-decoration:line-through; }
 
   /* ---------- HOW IT WORKS (white, carousel) ---------- */
-  .how-track{ display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; margin:0 -24px; padding:0 24px 8px; }
+  .how-track{ display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; margin:0 -24px; padding:0 24px 8px; align-items:stretch; }
   .how-track::-webkit-scrollbar{ display:none; }
   .how-card{
-    scroll-snap-align:start; flex:0 0 260px; background:var(--cream); border-radius:16px; overflow:hidden;
+    scroll-snap-align:start; flex:0 0 240px; background:var(--cream); border-radius:16px; overflow:hidden;
+    display:flex; flex-direction:column;
   }
-  .how-card img{ height:300px; width:100%; object-fit:cover; }
+  .how-card .img-wrap{ height:320px; display:flex; align-items:center; justify-content:center; background:var(--cream); }
+  .how-card img{ height:100%; width:100%; object-fit:contain; object-position:center; }
   .how-caption{ display:flex; justify-content:space-between; align-items:center; gap:10px; padding:16px 18px; }
   .how-caption h4{ font-size:15px; font-weight:700; line-height:1.35; }
   .how-plus{
@@ -214,22 +224,17 @@
   .interview-inner{ text-align:center; max-width:640px; margin:0 auto 40px; }
   .interview-inner h2{ font-size:clamp(24px,3.2vw,34px); font-weight:800; margin-bottom:14px; }
   .interview-inner p{ color:var(--gray); font-size:15.5px; }
-  .interview-img{ border-radius:18px; overflow:hidden; }
-  .interview-img img{ width:100%; height:440px; object-fit:cover; }
+  .interview-img{ border-radius:18px; overflow:hidden; background:var(--cream); height:440px; display:flex; align-items:center; justify-content:center; }
+  .interview-img img{ width:100%; height:100%; object-fit:contain; object-position:center; }
 
   /* ---------- ADVISORY PANEL (carousel, full-bleed cards) ---------- */
   .adv-track{ display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; margin:0 -24px; padding:0 24px 8px; }
   .adv-track::-webkit-scrollbar{ display:none; }
   .advisor-card{
-    scroll-snap-align:start; flex:0 0 300px; position:relative; border-radius:14px; overflow:hidden; height:300px;
+    scroll-snap-align:start; flex:0 0 260px; position:relative; border-radius:14px; overflow:hidden; height:300px;
+    background:var(--cream);
   }
-  .advisor-card img{ width:100%; height:100%; object-fit:cover; }
-  .advisor-card .grad{
-    position:absolute; left:0; right:0; bottom:0; padding:18px;
-    background:linear-gradient(0deg, rgba(0,0,0,.8) 20%, rgba(0,0,0,0) 90%);
-  }
-  .advisor-card h4{ color:#fff; font-size:16px; margin-bottom:2px; }
-  .advisor-card span{ font-size:12px; color:#d5d8ec; }
+  .advisor-card img{ width:100%; height:100%; object-fit:cover; object-position:center top; }
 
   /* ---------- FAQ (navy) ---------- */
   .faq{ background:var(--navy); color:#fff; }
@@ -252,7 +257,8 @@
   .legal .wrap{ max-width:900px; border-top:1px solid rgba(255,255,255,.08); padding-top:28px; }
 
   @media (max-width: 900px){
-    .hero-content{ padding-top:60px; }
+    .hero{ height:auto; min-height:600px; padding-bottom:110px; }
+    .hero-content{ padding-top:44px; }
     .feature-grid{ grid-template-columns:1fr; }
     .riskfree-grid{ grid-template-columns:1fr; }
     .plans{ grid-template-columns:1fr; }
@@ -260,6 +266,14 @@
 </style>
 </head>
 <body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap">
+    <div class="site-logo"><span class="dot"></span> OmniWatch</div>
+    <a href="#" class="btn btn-primary cta-redirect">Get Protected</a>
+  </div>
+</header>
 
 <!-- ============ HERO (full-bleed image, overlay text) ============ -->
 <section class="hero">
@@ -286,10 +300,14 @@
   <div class="as-seen">
     <p>Featured in</p>
     <div class="logo-row">
-      <span>Forbes</span><span>AP</span><span>abc3</span><span>FOX4</span><span>Consumer Voice</span><span>Consumer World Report</span>
+      <img src="images/logo-forbes.svg" alt="Forbes">
+      <img src="images/logo-ap.svg" alt="AP">
+      <img src="images/logo-abc3.svg" alt="abc3">
+      <img src="images/logo-fox4.svg" alt="FOX4">
+      <img src="images/logo-consumer-voice.svg" alt="Consumer Voice">
+      <img src="images/logo-consumer-world-report.svg" alt="Consumer World Report">
     </div>
   </div>
-  <div class="chat-fab">💬</div>
 </section>
 
 <!-- ============ WHY OMNIWATCH ============ -->
@@ -305,7 +323,6 @@
         <div class="img-wrap">
           <!-- IMAGE: feature-1.jpg -->
           <img src="images/feature-1.jpg" alt="Protection as advanced as today's threats">
-          <div class="feature-badge"><span class="tag">Alert</span><br>This is potentially a scam</div>
         </div>
         <h3>Protection as advanced as today's threats</h3>
         <ul>
@@ -318,7 +335,6 @@
         <div class="img-wrap">
           <!-- IMAGE: feature-2.jpg -->
           <img src="images/feature-2.jpg" alt="Real experts help you take back control">
-          <div class="feature-badge ok"><span class="tag">Agent available</span><br>24/7 restoration support</div>
         </div>
         <h3>Real experts help you take back control</h3>
         <ul>
@@ -331,7 +347,6 @@
         <div class="img-wrap">
           <!-- IMAGE: feature-3.jpg -->
           <img src="images/feature-3.jpg" alt="Financial protection for identity theft and scams">
-          <div class="feature-badge ok"><span class="tag">Insurance active</span><br>Up to $4M in identity theft insurance*</div>
         </div>
         <h3>Financial protection for identity theft and scams</h3>
         <ul>
@@ -354,35 +369,23 @@
     <div class="testi-track" id="testiTrack">
       <div class="testi-card">
         <!-- IMAGE: testimonial-1.jpg -->
-        <img src="images/testimonial-1.jpg" alt="Edna K.">
-        <div class="grad">
-          <blockquote>"I feel like I can trust OmniWatch, unlike some of the other competitors."</blockquote>
-          <footer>Edna K., OmniWatch customer</footer>
-        </div>
+        <img src="images/testimonial-1.jpg" alt="Edna K., OmniWatch customer">
       </div>
       <div class="testi-card">
         <!-- IMAGE: testimonial-2.jpg -->
-        <img src="images/testimonial-2.jpg" alt="Patrick Y.">
-        <div class="grad">
-          <blockquote>"I have had past identity theft issues. I just need to be able to sleep at night knowing my money and I are safe."</blockquote>
-          <footer>Patrick Y., OmniWatch customer</footer>
-        </div>
+        <img src="images/testimonial-2.jpg" alt="Patrick Y., OmniWatch customer">
       </div>
       <div class="testi-card">
         <!-- IMAGE: testimonial-3.jpg -->
-        <img src="images/testimonial-3.jpg" alt="Gregory E.">
-        <div class="grad">
-          <blockquote>"I know they'll be there when I need them."</blockquote>
-          <footer>Gregory E., OmniWatch customer</footer>
-        </div>
+        <img src="images/testimonial-3.jpg" alt="Gregory E., OmniWatch customer">
       </div>
       <div class="testi-card">
         <!-- IMAGE: testimonial-4.jpg -->
-        <img src="images/testimonial-4.jpg" alt="Fatima R.">
-        <div class="grad">
-          <blockquote>"Setup took five minutes and I finally feel in control of my own information."</blockquote>
-          <footer>Fatima R., OmniWatch customer</footer>
-        </div>
+        <img src="images/testimonial-4.jpg" alt="Fatima R., OmniWatch customer">
+      </div>
+      <div class="testi-card">
+        <!-- IMAGE: testimonial-5.jpg -->
+        <img src="images/testimonial-5.jpg" alt="OmniWatch customer">
       </div>
     </div>
     <div class="dots" id="testiDots"></div>
@@ -390,14 +393,18 @@
     <h3 class="riskfree-title">Try OmniWatch identity protection risk-free</h3>
     <div class="riskfree-grid">
       <div class="riskfree-card">
-        <!-- IMAGE: guarantee-1.jpg -->
-        <img src="images/guarantee-1.jpg" alt="30-day money-back guarantee">
+        <div class="img-wrap">
+          <!-- IMAGE: guarantee-1.jpg -->
+          <img src="images/guarantee-1.jpg" alt="30-day money-back guarantee">
+        </div>
         <h3>30-day money-back guarantee</h3>
         <p>Try OmniWatch with confidence. If it's not the right fit, you can get a full refund within 30 days on annual plans.</p>
       </div>
       <div class="riskfree-card">
-        <!-- IMAGE: guarantee-2.jpg -->
-        <img src="images/guarantee-2.jpg" alt="Our Make-It-Right Pledge">
+        <div class="img-wrap">
+          <!-- IMAGE: guarantee-2.jpg -->
+          <img src="images/guarantee-2.jpg" alt="Our Make-It-Right Pledge">
+        </div>
         <h3>Our Make-It-Right Pledge</h3>
         <p>We're here to help every step of the way. If our experts can't resolve your identity theft or scam case, we'll refund your money.</p>
       </div>
@@ -525,23 +532,31 @@
   <div class="wrap">
     <div class="how-track">
       <div class="how-card">
-        <!-- IMAGE: phone-1.png -->
-        <img src="images/phone-1.png" alt="See your protection status instantly">
+        <div class="img-wrap">
+          <!-- IMAGE: phone-1.png -->
+          <img src="images/phone-1.png" alt="See your protection status instantly">
+        </div>
         <div class="how-caption"><h4>See your protection status instantly</h4><span class="how-plus">+</span></div>
       </div>
       <div class="how-card">
-        <!-- IMAGE: phone-2.png -->
-        <img src="images/phone-2.png" alt="Get the industry's fastest alerts">
+        <div class="img-wrap">
+          <!-- IMAGE: phone-2.png -->
+          <img src="images/phone-2.png" alt="Get the industry's fastest alerts">
+        </div>
         <div class="how-caption"><h4>Get the industry's fastest alerts</h4><span class="how-plus">+</span></div>
       </div>
       <div class="how-card">
-        <!-- IMAGE: phone-3.png -->
-        <img src="images/phone-3.png" alt="Catch scams before they happen">
+        <div class="img-wrap">
+          <!-- IMAGE: phone-3.png -->
+          <img src="images/phone-3.png" alt="Catch scams before they happen">
+        </div>
         <div class="how-caption"><h4>Catch scams before they happen</h4><span class="how-plus">+</span></div>
       </div>
       <div class="how-card">
-        <!-- IMAGE: phone-4.png -->
-        <img src="images/phone-4.png" alt="Monitor the details scammers target">
+        <div class="img-wrap">
+          <!-- IMAGE: phone-4.png -->
+          <img src="images/phone-4.png" alt="Monitor the details scammers target">
+        </div>
         <div class="how-caption"><h4>Monitor the details scammers target</h4><span class="how-plus">+</span></div>
       </div>
     </div>
@@ -572,23 +587,19 @@
     <div class="adv-track" id="advTrack">
       <div class="advisor-card">
         <!-- IMAGE: expert-1.jpg -->
-        <img src="images/expert-1.jpg" alt="Mona Terry">
-        <div class="grad"><h4>Mona Terry</h4><span>COO &amp; Head of Victim Services, Identity Theft Resource Center</span></div>
+        <img src="images/expert-1.jpg" alt="Mona Terry, COO & Head of Victim Services, Identity Theft Resource Center">
       </div>
       <div class="advisor-card">
         <!-- IMAGE: expert-2.jpg -->
-        <img src="images/expert-2.jpg" alt="Michael Hurckes">
-        <div class="grad"><h4>Michael Hurckes</h4><span>Attorney &amp; Managing Partner, Ironclad Law</span></div>
+        <img src="images/expert-2.jpg" alt="Michael Hurckes, Attorney & Managing Partner, Ironclad Law">
       </div>
       <div class="advisor-card">
         <!-- IMAGE: expert-3.jpg -->
-        <img src="images/expert-3.jpg" alt="Randy Bryan">
-        <div class="grad"><h4>Randy Bryan</h4><span>Podcast Host, CEO &amp; Founder, tekRESCUE</span></div>
+        <img src="images/expert-3.jpg" alt="Randy Bryan, Podcast Host, CEO & Founder, tekRESCUE">
       </div>
       <div class="advisor-card">
         <!-- IMAGE: expert-4.jpg -->
-        <img src="images/expert-4.jpg" alt="Matt O'Neill">
-        <div class="grad"><h4>Matt O'Neill</h4><span>Co-Founder/Partner, 5OH Consulting LLC</span></div>
+        <img src="images/expert-4.jpg" alt="Matt O'Neill, Co-Founder/Partner, 5OH Consulting LLC">
       </div>
     </div>
     <div class="dots" id="advDots" style="margin-top:24px;"></div>

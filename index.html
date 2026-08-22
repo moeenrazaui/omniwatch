@@ -16,7 +16,6 @@
     --gray:#5b6472;
     --line:#e6e8ee;
     --cream:#f7f8fb;
-    --font-display: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
     --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -55,53 +54,29 @@
     backdrop-filter:blur(8px);
     border-bottom:1px solid rgba(255,255,255,.08);
   }
-  .site-header .wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    height:64px;
-  }
-  .site-logo{
-    display:flex; align-items:center; gap:8px;
-    font-weight:800; font-size:18px; color:#fff; letter-spacing:-.01em;
-  }
+  .site-header .wrap{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .site-logo{ display:flex; align-items:center; gap:8px; font-weight:800; font-size:18px; color:#fff; letter-spacing:-.01em; }
   .site-logo .dot{ width:9px; height:9px; border-radius:50%; background:var(--teal); display:inline-block; }
   .site-header .btn{ padding:10px 22px; font-size:14px; }
 
-  /* ---------- HERO (full bleed) ---------- */
-  .hero{
-    position:relative;
-    height:620px;
-    color:#fff;
-    overflow:hidden;
-  }
-  .hero-bg{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 10%; z-index:0;
-  }
+  /* ---------- HERO ---------- */
+  /* Real site source images: hero-desktop.jpg (1440x898) / hero-mobile.jpg (393x647) */
+  .hero{ position:relative; color:#fff; overflow:hidden; aspect-ratio:1440/898; }
+  .hero-bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; z-index:0; }
+  .hero-bg-mobile{ display:none; }
   .hero-overlay{
     position:absolute; inset:0;
     background: linear-gradient(100deg, rgba(6,8,22,.92) 0%, rgba(6,8,22,.78) 30%, rgba(6,8,22,.25) 55%, rgba(6,8,22,.05) 75%);
     z-index:1;
   }
-  .hero-content{
-    position:relative; z-index:2;
-    max-width:1240px; margin:0 auto; padding: 70px 24px 0;
-  }
+  .hero-content{ position:relative; z-index:2; max-width:1240px; margin:0 auto; padding: 70px 24px 0; height:100%; }
   .hero-text{ max-width:560px; }
-  .rating-badge{
-    display:inline-flex; align-items:center; gap:8px; margin-bottom:28px; font-size:13.5px;
-  }
+  .rating-badge{ display:inline-flex; align-items:center; gap:8px; margin-bottom:28px; font-size:13.5px; }
   .rating-badge .excellent{ text-decoration:underline; font-weight:600;}
   .stars{ color:var(--teal); letter-spacing:1px; font-size:13px; }
-  .hero h1{
-    font-size: clamp(32px, 4.2vw, 50px);
-    line-height:1.1;
-    font-weight:800;
-    margin-bottom:26px;
-    letter-spacing:-.01em;
-  }
+  .hero h1{ font-size: clamp(32px, 4.2vw, 50px); line-height:1.1; font-weight:800; margin-bottom:26px; letter-spacing:-.01em; }
   .hero-points{ list-style:none; margin-bottom:34px; }
-  .hero-points li{
-    display:flex; gap:12px; align-items:flex-start; margin-bottom:14px; font-size:16px; color:#eef0fa;
-  }
+  .hero-points li{ display:flex; gap:12px; align-items:flex-start; margin-bottom:14px; font-size:16px; color:#eef0fa; }
   .hero-points li::before{
     content:"✓"; flex:0 0 auto; width:20px; height:20px; border-radius:6px;
     background: var(--teal); color:#04231a; font-size:12px; font-weight:800;
@@ -112,13 +87,20 @@
   .as-seen{
     position:absolute; left:0; right:0; bottom:0; z-index:2;
     padding: 26px 0 30px; text-align:center;
-    background:linear-gradient(0deg, rgba(6,8,22,.75) 0%, rgba(6,8,22,0) 100%);
+    background:linear-gradient(0deg, rgba(6,8,22,.8) 0%, rgba(6,8,22,0) 100%);
   }
   .as-seen p{ font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:#c7cbe6; margin-bottom:16px;}
-  .logo-row{ display:flex; gap:40px; align-items:center; justify-content:center; flex-wrap:wrap; opacity:.9; }
-  .logo-row img{ height:22px; width:auto; filter:brightness(0) invert(1); opacity:.92; }
+  .logo-row{ display:flex; gap:40px; align-items:center; justify-content:center; flex-wrap:wrap; opacity:.92; }
+  .logo-row img{ height:22px; width:auto; filter:brightness(0) invert(1); }
 
-  /* ---------- FEATURES (white) ---------- */
+  @media (max-width:640px){
+    .hero{ aspect-ratio:393/647; }
+    .hero-bg-desktop{ display:none; }
+    .hero-bg-mobile{ display:block; }
+    .hero-bg-mobile{ object-position:center top; }
+  }
+
+  /* ---------- FEATURES ---------- */
   .section-head{ text-align:center; max-width:600px; margin:0 auto 52px; }
   .section-head .eyebrow{ display:block; margin-bottom:10px; }
   .section-head h2{ font-size:clamp(24px,3.2vw,34px); font-weight:800; margin-bottom:10px; letter-spacing:-.01em; }
@@ -127,24 +109,23 @@
   .section-head.on-dark p{ color:#a9aed1; }
 
   .feature-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
-  .feature-card .img-wrap{
-    position:relative; margin-bottom:22px; border-radius:14px; overflow:hidden;
-    height:260px;
-  }
+  /* Real site source: protects-1/2/3.jpg = 428x450 */
+  .feature-card .img-wrap{ border-radius:14px; overflow:hidden; margin-bottom:22px; aspect-ratio:428/450; }
   .feature-card img{ height:100%; width:100%; object-fit:cover; object-position:center; }
   .feature-card h3{ font-size:19px; font-weight:700; margin-bottom:14px; }
   .feature-card ul{ list-style:none; }
   .feature-card li{ display:flex; gap:10px; font-size:14px; color:var(--gray); margin-bottom:10px; }
   .feature-card li::before{ content:"●"; color:var(--blue-accent); font-size:8px; margin-top:6px; }
 
-  /* ---------- MEGA NAVY SECTION: testimonials + riskfree + pricing ---------- */
+  /* ---------- MEGA NAVY SECTION ---------- */
   .mega-dark{ background: var(--navy); color:#fff; padding-top:90px; }
 
+  /* Real site source: trust-1..trust-5.jpg = 400x476 */
   .testi-track{ display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:8px; margin:0 -24px; padding-left:24px; }
   .testi-track::-webkit-scrollbar{ display:none; }
   .testi-card{
-    scroll-snap-align:start; flex:0 0 260px; position:relative; border-radius:16px; overflow:hidden; height:360px;
-    background:var(--card-navy);
+    scroll-snap-align:start; flex:0 0 260px; border-radius:16px; overflow:hidden;
+    aspect-ratio:400/476; background:var(--card-navy);
   }
   .testi-card img{ width:100%; height:100%; object-fit:cover; object-position:center; }
   .dots{ display:flex; gap:8px; justify-content:center; margin:28px 0 0; }
@@ -153,9 +134,8 @@
 
   .riskfree-title{ text-align:center; font-size:clamp(22px,2.8vw,30px); font-weight:800; margin:80px 0 32px; }
   .riskfree-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-  .riskfree-card .img-wrap{
-    border-radius:14px; overflow:hidden; height:320px; margin-bottom:18px;
-  }
+  /* Real site source: try-1/try-2.jpg = 660x450 */
+  .riskfree-card .img-wrap{ border-radius:14px; overflow:hidden; margin-bottom:18px; aspect-ratio:660/450; }
   .riskfree-card img{ height:100%; width:100%; object-fit:cover; object-position:center; }
   .riskfree-card h3{ font-size:19px; font-weight:700; margin-bottom:8px; }
   .riskfree-card p{ color:#b7bce0; font-size:14.5px; }
@@ -164,19 +144,12 @@
   .pricing-head h2{ font-size:clamp(24px,3.2vw,34px); font-weight:800; margin-bottom:10px; }
   .pricing-head p{ color:#a9aed1; font-size:15px; }
   .toggle-wrap{ display:flex; flex-direction:column; align-items:center; margin-bottom:48px; }
-  .toggle{
-    display:inline-flex; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
-    border-radius:100px; padding:4px;
-  }
-  .toggle button{
-    border:none; background:transparent; color:#c7cbe6; padding:10px 26px; border-radius:100px; font-size:14px; font-weight:600; cursor:pointer;
-  }
+  .toggle{ display:inline-flex; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:100px; padding:4px; }
+  .toggle button{ border:none; background:transparent; color:#c7cbe6; padding:10px 26px; border-radius:100px; font-size:14px; font-weight:600; cursor:pointer; }
   .toggle button.active{ background:#fff; color:var(--navy); }
   .save-note{ font-size:12.5px; color:var(--teal); font-weight:600; margin-top:12px; }
   .plans{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:start; }
-  .plan{
-    background:var(--card-navy); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:26px;
-  }
+  .plan{ background:var(--card-navy); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:26px; }
   .plan h3{ font-size:17px; margin-bottom:12px; font-weight:700; }
   .plan .rec-badge{
     display:inline-block; background:var(--teal); color:#04231a; font-size:10.5px; font-weight:700;
@@ -204,15 +177,13 @@
   .plan-section li.no::before{ content:"✕"; color:#e05a5a; }
   .plan-section li.no{ color:#6c729a; text-decoration:line-through; }
 
-  /* ---------- HOW IT WORKS (white, carousel) ---------- */
+  /* ---------- HOW IT WORKS ---------- */
+  /* Real site source: iphone-1..iphone-5.png = 326x400 */
   .how-track{ display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; margin:0 -24px; padding:0 24px 8px; }
   .how-track::-webkit-scrollbar{ display:none; }
-  .how-card{
-    scroll-snap-align:start; flex:0 0 240px; background:var(--cream); border-radius:16px; overflow:hidden;
-    display:flex; flex-direction:column;
-  }
-  .how-card .img-wrap{ height:300px; display:flex; align-items:center; justify-content:center; background:var(--cream); }
-  .how-card img{ height:100%; width:100%; object-fit:contain; object-position:center; }
+  .how-card{ scroll-snap-align:start; flex:0 0 220px; background:var(--cream); border-radius:16px; overflow:hidden; }
+  .how-card .img-wrap{ aspect-ratio:326/400; background:var(--cream); }
+  .how-card img{ height:100%; width:100%; object-fit:cover; object-position:center; }
   .how-caption{ display:flex; justify-content:space-between; align-items:center; gap:10px; padding:16px 18px; }
   .how-caption h4{ font-size:15px; font-weight:700; line-height:1.35; }
   .how-plus{
@@ -220,34 +191,29 @@
     display:flex; align-items:center; justify-content:center; font-size:16px;
   }
 
-  /* ---------- EXPERT / INTERVIEW ---------- */
+  /* ---------- INTERVIEW ---------- */
   .interview-inner{ text-align:center; max-width:640px; margin:0 auto 40px; }
   .interview-inner h2{ font-size:clamp(24px,3.2vw,34px); font-weight:800; margin-bottom:14px; }
   .interview-inner p{ color:var(--gray); font-size:15.5px; }
-  .interview-img{ border-radius:18px; overflow:hidden; height:440px; }
+  /* Real site source: kaelee-kit.jpg = 1360x691 (desktop) / kaelee-kit-mobile.jpg (mobile) */
+  .interview-img{ border-radius:18px; overflow:hidden; aspect-ratio:1360/691; }
   .interview-img img{ width:100%; height:100%; object-fit:cover; object-position:center; }
 
-  /* ---------- ADVISORY PANEL (carousel, full-bleed cards) ---------- */
+  /* ---------- ADVISORY PANEL ---------- */
+  /* Real site source: advisor-*.jpg = 332x332 (square) */
   .adv-track{ display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; margin:0 -24px; padding:0 24px 8px; }
   .adv-track::-webkit-scrollbar{ display:none; }
-  .advisor-card{
-    scroll-snap-align:start; flex:0 0 240px; position:relative; border-radius:14px; overflow:hidden; height:280px;
-    background:var(--cream);
-  }
-  .advisor-card img{ width:100%; height:100%; object-fit:cover; object-position:center top; }
+  .advisor-card{ scroll-snap-align:start; flex:0 0 200px; border-radius:14px; overflow:hidden; aspect-ratio:1/1; background:var(--cream); }
+  .advisor-card img{ width:100%; height:100%; object-fit:cover; object-position:center; }
 
-  /* ---------- FAQ (navy) ---------- */
+  /* ---------- FAQ ---------- */
   .faq{ background:var(--navy); color:#fff; }
-  .faq-item{
-    border-radius:12px; margin-bottom:14px; overflow:hidden; background:var(--card-navy);
-  }
+  .faq-item{ border-radius:12px; margin-bottom:14px; overflow:hidden; background:var(--card-navy); }
   .faq-q{
     width:100%; text-align:left; background:none; border:none; color:#fff; font-size:15px; font-weight:600;
     padding:19px 22px; display:flex; gap:14px; align-items:center; cursor:pointer;
   }
-  .faq-q .plus{
-    flex:0 0 auto; font-size:16px; color:#c7cbe6; font-weight:400; width:18px;
-  }
+  .faq-q .plus{ flex:0 0 auto; font-size:16px; color:#c7cbe6; font-weight:400; width:18px; }
   .faq-item.open .plus{ transform:rotate(45deg); display:inline-block; }
   .faq-a{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
   .faq-a p{ padding:0 22px 20px 54px; color:#b7bce0; font-size:14px; line-height:1.6; }
@@ -257,8 +223,6 @@
   .legal .wrap{ max-width:900px; border-top:1px solid rgba(255,255,255,.08); padding-top:28px; }
 
   @media (max-width: 900px){
-    .hero{ height:auto; min-height:600px; padding-bottom:110px; }
-    .hero-content{ padding-top:44px; }
     .feature-grid{ grid-template-columns:1fr; }
     .riskfree-grid{ grid-template-columns:1fr; }
     .plans{ grid-template-columns:1fr; }
@@ -275,10 +239,12 @@
   </div>
 </header>
 
-<!-- ============ HERO (full-bleed image, overlay text) ============ -->
+<!-- ============ HERO ============ -->
 <section class="hero">
-  <!-- IMAGE: hero-woman.jpg -->
-  <img class="hero-bg" src="images/hero-woman.jpg" alt="OmniWatch customer">
+  <!-- IMAGE: hero-desktop.jpg (1440x898) -->
+  <img class="hero-bg hero-bg-desktop" src="images/hero-desktop.jpg" alt="OmniWatch customer using her laptop">
+  <!-- IMAGE: hero-mobile.jpg (393x647) -->
+  <img class="hero-bg hero-bg-mobile" src="images/hero-mobile.jpg" alt="OmniWatch customer">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-text">
@@ -300,12 +266,12 @@
   <div class="as-seen">
     <p>Featured in</p>
     <div class="logo-row">
-      <img src="images/logo-forbes.svg" alt="Forbes">
-      <img src="images/logo-ap.svg" alt="AP">
-      <img src="images/logo-abc3.svg" alt="abc3">
-      <img src="images/logo-fox4.svg" alt="FOX4">
-      <img src="images/logo-consumer-voice.svg" alt="Consumer Voice">
-      <img src="images/logo-consumer-world-report.svg" alt="Consumer World Report">
+      <img src="images/forbes.svg" alt="Forbes" width="113" height="32">
+      <img src="images/ap_logo.svg" alt="AP" width="55" height="32">
+      <img src="images/abc_8_logo.svg" alt="ABC 8" width="44" height="32">
+      <img src="images/fox_4_logo.svg" alt="Fox 4" width="71" height="32">
+      <img src="images/consumer-voice.svg" alt="Consumer Voice" width="105" height="32">
+      <img src="images/consumerworldreport-logo.png" alt="Consumer World Report" width="90" height="32">
     </div>
   </div>
 </section>
@@ -321,8 +287,8 @@
     <div class="feature-grid">
       <div class="feature-card">
         <div class="img-wrap">
-          <!-- IMAGE: feature-1.jpg -->
-          <img src="images/feature-1.jpg" alt="Protection as advanced as today's threats">
+          <!-- IMAGE: protects-1.jpg (428x450) -->
+          <img src="images/protects-1.jpg" alt="Real-time scam alert displayed on the OmniWatch mobile app">
         </div>
         <h3>Protection as advanced as today's threats</h3>
         <ul>
@@ -333,8 +299,8 @@
       </div>
       <div class="feature-card">
         <div class="img-wrap">
-          <!-- IMAGE: feature-2.jpg -->
-          <img src="images/feature-2.jpg" alt="Real experts help you take back control">
+          <!-- IMAGE: protects-2.jpg (428x450) -->
+          <img src="images/protects-2.jpg" alt="Summary of OmniWatch 24/7 restoration support">
         </div>
         <h3>Real experts help you take back control</h3>
         <ul>
@@ -345,8 +311,8 @@
       </div>
       <div class="feature-card">
         <div class="img-wrap">
-          <!-- IMAGE: feature-3.jpg -->
-          <img src="images/feature-3.jpg" alt="Financial protection for identity theft and scams">
+          <!-- IMAGE: protects-3.jpg (428x450) -->
+          <img src="images/protects-3.jpg" alt="Summary of OmniWatch identity theft and scam insurance coverage">
         </div>
         <h3>Financial protection for identity theft and scams</h3>
         <ul>
@@ -359,7 +325,7 @@
   </div>
 </section>
 
-<!-- ============ MEGA DARK SECTION: testimonials + risk-free + pricing ============ -->
+<!-- ============ MEGA DARK SECTION ============ -->
 <section class="mega-dark">
   <div class="wrap">
     <div class="section-head on-dark">
@@ -367,44 +333,23 @@
       <p>Representative photos used to protect customer privacy.</p>
     </div>
     <div class="testi-track" id="testiTrack">
-      <div class="testi-card">
-        <!-- IMAGE: testimonial-1.jpg -->
-        <img src="images/testimonial-1.jpg" alt="Edna K., OmniWatch customer">
-      </div>
-      <div class="testi-card">
-        <!-- IMAGE: testimonial-2.jpg -->
-        <img src="images/testimonial-2.jpg" alt="Patrick Y., OmniWatch customer">
-      </div>
-      <div class="testi-card">
-        <!-- IMAGE: testimonial-3.jpg -->
-        <img src="images/testimonial-3.jpg" alt="Gregory E., OmniWatch customer">
-      </div>
-      <div class="testi-card">
-        <!-- IMAGE: testimonial-4.jpg -->
-        <img src="images/testimonial-4.jpg" alt="Fatima R., OmniWatch customer">
-      </div>
-      <div class="testi-card">
-        <!-- IMAGE: testimonial-5.jpg -->
-        <img src="images/testimonial-5.jpg" alt="OmniWatch customer">
-      </div>
+      <div class="testi-card"><!-- IMAGE: trust-1.jpg (400x476) --><img src="images/trust-1.jpg" alt="Edna K., OmniWatch customer"></div>
+      <div class="testi-card"><!-- IMAGE: trust-2.jpg (400x476) --><img src="images/trust-2.jpg" alt="Patrick Y., OmniWatch customer"></div>
+      <div class="testi-card"><!-- IMAGE: trust-3.jpg (400x476) --><img src="images/trust-3.jpg" alt="Gregory E., OmniWatch customer"></div>
+      <div class="testi-card"><!-- IMAGE: trust-4.jpg (400x476) --><img src="images/trust-4.jpg" alt="Patsy B., OmniWatch customer"></div>
+      <div class="testi-card"><!-- IMAGE: trust-5.jpg (400x476) --><img src="images/trust-5.jpg" alt="Dinah K., OmniWatch customer"></div>
     </div>
     <div class="dots" id="testiDots"></div>
 
     <h3 class="riskfree-title">Try OmniWatch identity protection risk-free</h3>
     <div class="riskfree-grid">
       <div class="riskfree-card">
-        <div class="img-wrap">
-          <!-- IMAGE: guarantee-1.jpg -->
-          <img src="images/guarantee-1.jpg" alt="30-day money-back guarantee">
-        </div>
+        <div class="img-wrap"><!-- IMAGE: try-1.jpg (660x450) --><img src="images/try-1.jpg" alt="A smiling woman"></div>
         <h3>30-day money-back guarantee</h3>
         <p>Try OmniWatch with confidence. If it's not the right fit, you can get a full refund within 30 days on annual plans.</p>
       </div>
       <div class="riskfree-card">
-        <div class="img-wrap">
-          <!-- IMAGE: guarantee-2.jpg -->
-          <img src="images/guarantee-2.jpg" alt="Our Make-It-Right Pledge">
-        </div>
+        <div class="img-wrap"><!-- IMAGE: try-2.jpg (660x450) --><img src="images/try-2.jpg" alt="A woman smiling at phone"></div>
         <h3>Our Make-It-Right Pledge</h3>
         <p>We're here to help every step of the way. If our experts can't resolve your identity theft or scam case, we'll refund your money.</p>
       </div>
@@ -423,7 +368,6 @@
     </div>
 
     <div class="plans" id="plansWrap">
-      <!-- Standard -->
       <div class="plan">
         <h3>Standard plan</h3>
         <div class="price-row"><span class="price">$7.99</span><span class="per">per month</span></div>
@@ -433,21 +377,11 @@
         <a href="#" class="btn btn-dark btn-block cta-redirect">Select plan</a>
         <div class="plan-section">
           <button class="plan-section-head">Essential monitoring</button>
-          <ul>
-            <li>Dark web monitoring</li>
-            <li>Data breach notifications</li>
-            <li>Malware alerts</li>
-            <li>Phishing alerts</li>
-            <li>1 Bureau Credit Monitoring with Instant Alerts**</li>
-          </ul>
+          <ul><li>Dark web monitoring</li><li>Data breach notifications</li><li>Malware alerts</li><li>Phishing alerts</li><li>1 Bureau Credit Monitoring with Instant Alerts**</li></ul>
         </div>
         <div class="plan-section">
           <button class="plan-section-head">Financial protection</button>
-          <ul>
-            <li>Up to $2M in identity theft insurance*</li>
-            <li>Up to $50,000 in scam and ransomware reimbursement*</li>
-            <li class="no">Household insurance</li>
-          </ul>
+          <ul><li>Up to $2M in identity theft insurance*</li><li>Up to $50,000 in scam and ransomware reimbursement*</li><li class="no">Household insurance</li></ul>
         </div>
         <div class="plan-section closed"><button class="plan-section-head">Scam protection</button><ul><li>Real-time scam link scanning</li><li>Suspicious call flagging</li></ul></div>
         <div class="plan-section closed"><button class="plan-section-head">Support</button><ul><li>Email &amp; chat support</li></ul></div>
@@ -455,7 +389,6 @@
         <div class="plan-section closed"><button class="plan-section-head">Identity protection tools</button><ul><li>Password manager</li></ul></div>
       </div>
 
-      <!-- Elite -->
       <div class="plan">
         <h3>Elite plan <span class="rec-badge">Recommended</span></h3>
         <div class="price-row"><span class="price">$14.99</span><span class="per">per month</span></div>
@@ -465,21 +398,11 @@
         <a href="#" class="btn btn-primary btn-block cta-redirect">Select plan</a>
         <div class="plan-section">
           <button class="plan-section-head">Essential monitoring</button>
-          <ul>
-            <li>Dark web monitoring</li>
-            <li>Data breach notifications</li>
-            <li>Malware alerts</li>
-            <li>Phishing alerts</li>
-            <li>3 Bureau Credit Monitoring with Instant Alerts**</li>
-          </ul>
+          <ul><li>Dark web monitoring</li><li>Data breach notifications</li><li>Malware alerts</li><li>Phishing alerts</li><li>3 Bureau Credit Monitoring with Instant Alerts**</li></ul>
         </div>
         <div class="plan-section">
           <button class="plan-section-head">Financial protection</button>
-          <ul>
-            <li>Up to $4M in identity theft insurance*</li>
-            <li>Up to $100,000 in scam and ransomware reimbursement*</li>
-            <li class="no">Household insurance</li>
-          </ul>
+          <ul><li>Up to $4M in identity theft insurance*</li><li>Up to $100,000 in scam and ransomware reimbursement*</li><li class="no">Household insurance</li></ul>
         </div>
         <div class="plan-section closed"><button class="plan-section-head">Scam protection</button><ul><li>Real-time scam link scanning</li><li>Priority scam agent line</li></ul></div>
         <div class="plan-section closed"><button class="plan-section-head">Support</button><ul><li>Priority email &amp; chat support</li></ul></div>
@@ -487,7 +410,6 @@
         <div class="plan-section closed"><button class="plan-section-head">Identity protection tools</button><ul><li>Password manager</li></ul></div>
       </div>
 
-      <!-- Family -->
       <div class="plan">
         <h3>Family plan</h3>
         <div class="price-row"><span class="price">$19.99</span><span class="per">per month</span></div>
@@ -497,21 +419,11 @@
         <a href="#" class="btn btn-dark btn-block cta-redirect">Select plan</a>
         <div class="plan-section">
           <button class="plan-section-head">Essential monitoring</button>
-          <ul>
-            <li>Dark web monitoring</li>
-            <li>Data breach notifications</li>
-            <li>Malware alerts</li>
-            <li>Phishing alerts</li>
-            <li>3 Bureau Credit Monitoring with Instant Alerts**</li>
-          </ul>
+          <ul><li>Dark web monitoring</li><li>Data breach notifications</li><li>Malware alerts</li><li>Phishing alerts</li><li>3 Bureau Credit Monitoring with Instant Alerts**</li></ul>
         </div>
         <div class="plan-section">
           <button class="plan-section-head">Financial protection</button>
-          <ul>
-            <li>Up to $8M in identity theft insurance*</li>
-            <li>Up to $200,000 in scam and ransomware reimbursement*</li>
-            <li>Household insurance</li>
-          </ul>
+          <ul><li>Up to $8M in identity theft insurance*</li><li>Up to $200,000 in scam and ransomware reimbursement*</li><li>Household insurance</li></ul>
         </div>
         <div class="plan-section closed"><button class="plan-section-head">Scam protection</button><ul><li>Real-time scam link scanning</li><li>Priority scam agent line</li></ul></div>
         <div class="plan-section closed"><button class="plan-section-head">Support</button><ul><li>Priority email, chat &amp; phone support</li></ul></div>
@@ -522,48 +434,38 @@
   </div>
 </section>
 
-<!-- ============ HOW IT WORKS (carousel) ============ -->
+<!-- ============ HOW IT WORKS ============ -->
 <section>
   <div class="wrap">
-    <div class="section-head">
-      <h2>How does OmniWatch help protect me?</h2>
-    </div>
+    <div class="section-head"><h2>How does OmniWatch help protect me?</h2></div>
   </div>
   <div class="wrap">
     <div class="how-track">
       <div class="how-card">
-        <div class="img-wrap">
-          <!-- IMAGE: phone-1.png -->
-          <img src="images/phone-1.png" alt="See your protection status instantly">
-        </div>
+        <div class="img-wrap"><!-- IMAGE: iphone-1.png (326x400) --><img src="images/iphone-1.png" alt="Dashboard and summary checklist displayed on the OmniWatch mobile app"></div>
         <div class="how-caption"><h4>See your protection status instantly</h4><span class="how-plus">+</span></div>
       </div>
       <div class="how-card">
-        <div class="img-wrap">
-          <!-- IMAGE: phone-2.png -->
-          <img src="images/phone-2.png" alt="Get the industry's fastest alerts">
-        </div>
+        <div class="img-wrap"><!-- IMAGE: iphone-2.png (326x400) --><img src="images/iphone-2.png" alt="Real-time identity theft alert displayed on the OmniWatch mobile app"></div>
         <div class="how-caption"><h4>Get the industry's fastest alerts</h4><span class="how-plus">+</span></div>
       </div>
       <div class="how-card">
-        <div class="img-wrap">
-          <!-- IMAGE: phone-3.png -->
-          <img src="images/phone-3.png" alt="Catch scams before they happen">
-        </div>
+        <div class="img-wrap"><!-- IMAGE: iphone-3.png (326x400) --><img src="images/iphone-3.png" alt="Real-time scam alert displayed on the OmniWatch mobile app"></div>
         <div class="how-caption"><h4>Catch scams before they happen</h4><span class="how-plus">+</span></div>
       </div>
       <div class="how-card">
-        <div class="img-wrap">
-          <!-- IMAGE: phone-4.png -->
-          <img src="images/phone-4.png" alt="Monitor the details scammers target">
-        </div>
+        <div class="img-wrap"><!-- IMAGE: iphone-4.png (326x400) --><img src="images/iphone-4.png" alt="List of active monitoring services displayed on the OmniWatch mobile app"></div>
         <div class="how-caption"><h4>Monitor the details scammers target</h4><span class="how-plus">+</span></div>
+      </div>
+      <div class="how-card">
+        <div class="img-wrap"><!-- IMAGE: iphone-5.png (326x400) --><img src="images/iphone-5.png" alt="View of the active identity theft insurance and credit monitoring"></div>
+        <div class="how-caption"><h4>Stay private wherever you connect</h4><span class="how-plus">+</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ INTERVIEW / EXPERT TRUST ============ -->
+<!-- ============ INTERVIEW ============ -->
 <section>
   <div class="wrap">
     <div class="interview-inner">
@@ -571,13 +473,13 @@
       <p>We were the first major identity theft protection brand to introduce scam reimbursement, recognizing scams as one of the fastest-growing financial threats today.</p>
     </div>
     <div class="interview-img">
-      <!-- IMAGE: interview-section.jpg -->
-      <img src="images/interview-section.jpg" alt="OmniWatch experts discussing scam protection">
+      <!-- IMAGE: kaelee-kit.jpg (1360x691) -->
+      <img src="images/kaelee-kit.jpg" alt="Two OmniWatch experts have a discussion in a studio interview setup">
     </div>
   </div>
 </section>
 
-<!-- ============ ADVISORY PANEL (carousel) ============ -->
+<!-- ============ ADVISORY PANEL ============ -->
 <section>
   <div class="wrap">
     <div class="section-head">
@@ -585,22 +487,12 @@
       <p>To help stay ahead of emerging threats, OmniWatch has assembled an Advisory Panel of experts in cybersecurity, privacy law, identity theft prevention, and digital safety.</p>
     </div>
     <div class="adv-track" id="advTrack">
-      <div class="advisor-card">
-        <!-- IMAGE: expert-1.jpg -->
-        <img src="images/expert-1.jpg" alt="Mona Terry, COO & Head of Victim Services, Identity Theft Resource Center">
-      </div>
-      <div class="advisor-card">
-        <!-- IMAGE: expert-2.jpg -->
-        <img src="images/expert-2.jpg" alt="Michael Hurckes, Attorney & Managing Partner, Ironclad Law">
-      </div>
-      <div class="advisor-card">
-        <!-- IMAGE: expert-3.jpg -->
-        <img src="images/expert-3.jpg" alt="Randy Bryan, Podcast Host, CEO & Founder, tekRESCUE">
-      </div>
-      <div class="advisor-card">
-        <!-- IMAGE: expert-4.jpg -->
-        <img src="images/expert-4.jpg" alt="Matt O'Neill, Co-Founder/Partner, 5OH Consulting LLC">
-      </div>
+      <div class="advisor-card"><!-- IMAGE: advisor-mona.jpg (332x332) --><img src="images/advisor-mona.jpg" alt="Advisor Mona Terry"></div>
+      <div class="advisor-card"><!-- IMAGE: advisor-michael.jpg (332x332) --><img src="images/advisor-michael.jpg" alt="Advisor Michael Hurckes"></div>
+      <div class="advisor-card"><!-- IMAGE: advisor-randy.jpg (332x332) --><img src="images/advisor-randy.jpg" alt="Advisor Randy Bryan"></div>
+      <div class="advisor-card"><!-- IMAGE: advisor-matt.jpg (332x332) --><img src="images/advisor-matt.jpg" alt="Advisor Matt O'Neill"></div>
+      <div class="advisor-card"><!-- IMAGE: advisor-andy.jpg (332x332) --><img src="images/advisor-andy.jpg" alt="Advisor Andy Murphy"></div>
+      <div class="advisor-card"><!-- IMAGE: advisor-al.jpg (332x332) --><img src="images/advisor-al.jpg" alt="Advisor Al Pascual"></div>
     </div>
     <div class="dots" id="advDots" style="margin-top:24px;"></div>
   </div>
@@ -609,9 +501,7 @@
 <!-- ============ FAQ ============ -->
 <section class="faq">
   <div class="wrap">
-    <div class="section-head on-dark">
-      <h2>Frequently asked questions</h2>
-    </div>
+    <div class="section-head on-dark"><h2>Frequently asked questions</h2></div>
     <div class="faq-list" id="faqList">
       <div class="faq-item">
         <button class="faq-q"><span class="plus">+</span>What is OmniWatch?</button>
@@ -637,7 +527,7 @@
   </div>
 </section>
 
-<!-- ============ LEGAL / DISCLAIMER TEXT ============ -->
+<!-- ============ LEGAL ============ -->
 <section class="legal">
   <div class="wrap">
     <p>*Restrictions and exclusions apply. Insurance coverage details vary by state and plan. Please review full policy terms before purchase.</p><br>
@@ -646,9 +536,7 @@
 </section>
 
 <script>
-  // ============ EDIT THIS: destination URL for every CTA ============
   const REDIRECT_URL = "https://www.omniwatch.com/";
-
   document.querySelectorAll('.cta-redirect').forEach(el=>{
     el.addEventListener('click', function(e){
       e.preventDefault();
@@ -656,7 +544,6 @@
     });
   });
 
-  // ============ generic carousel-with-dots helper ============
   function wireCarousel(trackId, dotsId, cardSelector){
     const track = document.getElementById(trackId);
     const dotsWrap = document.getElementById(dotsId);
@@ -681,7 +568,6 @@
   wireCarousel('testiTrack','testiDots','.testi-card');
   wireCarousel('advTrack','advDots','.advisor-card');
 
-  // ============ FAQ accordion ============
   document.querySelectorAll('.faq-item').forEach(item=>{
     const q = item.querySelector('.faq-q');
     const a = item.querySelector('.faq-a');
@@ -698,18 +584,16 @@
     });
   });
 
-  // ============ Pricing plan-section accordion ============
   document.querySelectorAll('.plan-section-head').forEach(head=>{
     head.addEventListener('click', ()=>{
       head.parentElement.classList.toggle('closed');
     });
   });
 
-  // ============ Monthly / Yearly toggle ============
   const btnMonthly = document.getElementById('btnMonthly');
   const btnYearly = document.getElementById('btnYearly');
   const monthlyPrices = ['7.99','14.99','19.99'];
-  const yearlyPrices  = ['7.99','14.99','19.99']; // per-month equivalent when billed yearly (shown as headline price)
+  const yearlyPrices  = ['7.99','14.99','19.99'];
   const monthlyNotes = ['Billed monthly','Billed monthly','Billed monthly'];
   const yearlyNotes  = ['<del>$143.88</del> $95.88 billed annually','<del>$263.88</del> $179.88 billed annually','<del>$359.88</del> $239.88 billed annually'];
 
